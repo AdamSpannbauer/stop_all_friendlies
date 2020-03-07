@@ -12,7 +12,7 @@ class Kevin {
     this.update();
 
     this.speech_bubble = new SpeechBubble(
-  		' STOP  ALL\nFRIENDLIES',
+  		' STOP  ALL \nFRIENDLIES',
   		createVector(),
   		1,
     );
