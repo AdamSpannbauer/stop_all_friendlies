@@ -14,20 +14,20 @@ const gc_setups = [];
 let kev_talk = false;
 
 function position_canvas() {
-	let w = canvas_w
-	let h = canvas_h
+  let w = canvas_w
+  let h = canvas_h
 
-	if (windowWidth < w * 1.1) {
-		w = windowWidth * 0.9
-		h = w * (canvas_w / canvas_h)
-	}
+  if (windowWidth < w * 1.1) {
+    w = windowWidth * 0.9
+    h = w * (canvas_w / canvas_h)
+  }
 
-	if (windowHeight < h * 1.1) {
-		h = windowHeight * 0.9
-		w = h * (canvas_h / canvas_w)
-	}
+  if (windowHeight < h * 1.1) {
+    h = windowHeight * 0.9
+    w = h * (canvas_h / canvas_w)
+  }
 
-	resizeCanvas(w, h);
+  resizeCanvas(w, h);
 
   const x = (windowWidth - width) / 2;
   const y = (windowHeight - height) / 2;
@@ -56,31 +56,31 @@ function setup() {
   let x = width * 0.14;
   let h = height / 6
   for (let y = h; y < height - h; y += h * 0.7) {
-  	const gc_p = createVector(x, y);
-  	const gc_setup = new GCSetup(gc_p, -1, h, true, gc_setup_im);
-  	gc_setups.push(gc_setup);
+    const gc_p = createVector(x, y);
+    const gc_setup = new GCSetup(gc_p, -1, h, true, gc_setup_im);
+    gc_setups.push(gc_setup);
   }
 
   x = width * 0.35;
   for (let y = h; y < height - h; y += h * 0.7) {
-  	const gc_p = createVector(x, y);
-  	const gc_setup = new GCSetup(gc_p, 1, h, true, gc_setup_im);
-  	gc_setups.push(gc_setup);
+    const gc_p = createVector(x, y);
+    const gc_setup = new GCSetup(gc_p, 1, h, true, gc_setup_im);
+    gc_setups.push(gc_setup);
   }
 
 
   x = width * 0.69;
   for (let y = h; y < height - h; y += h * 0.7) {
-  	const gc_p = createVector(x, y);
-  	const gc_setup = new GCSetup(gc_p, -1, h, true, gc_setup_im);
-  	gc_setups.push(gc_setup);
+    const gc_p = createVector(x, y);
+    const gc_setup = new GCSetup(gc_p, -1, h, true, gc_setup_im);
+    gc_setups.push(gc_setup);
   }
 
   x = width * 0.9;
   for (let y = h; y < height - h; y += h * 0.7) {
-  	const gc_p = createVector(x, y);
-  	const gc_setup = new GCSetup(gc_p, 1, h, true, gc_setup_im);
-  	gc_setups.push(gc_setup);
+    const gc_p = createVector(x, y);
+    const gc_setup = new GCSetup(gc_p, 1, h, true, gc_setup_im);
+    gc_setups.push(gc_setup);
   }
 
   kevin = new Kevin(height / 10, kev_head_im);
@@ -90,19 +90,19 @@ function draw() {
   background(30, 30, 50);
 
   for (const gc_setup of gc_setups) {
-  	gc_setup.update();
-  	gc_setup.draw();
+    gc_setup.update();
+    gc_setup.draw();
   }
 
   kevin.update();
   kevin.draw();
 
   if (frameCount % 50 == 0) {
-  	kev_talk = !kev_talk;
+    kev_talk = !kev_talk;
   }
 
   if (kev_talk) {
-  	kevin.talk();
+    kevin.talk();
   }
 
   stroke(100, 100);

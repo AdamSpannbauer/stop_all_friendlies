@@ -11,22 +11,22 @@ class SpeechBubble {
   }
 
   draw() {
-  	push();
-  	translate(this.mouth_p.x, this.mouth_p.y);
+    push();
+    translate(this.mouth_p.x, this.mouth_p.y);
 
-  	stroke(0);
-  	strokeWeight(3);
-  	fill(this.color);
-  	textFont(this.font);
-  	textSize(this.size);
+    stroke(0);
+    strokeWeight(3);
+    fill(this.color);
+    textFont(this.font);
+    textSize(this.size);
 
-  	if (this.dir < 0) {
-  		textAlign(RIGHT);
-  	} else {
-  		textAlign(LEFT);
-  	}
+    if (this.dir < 0) {
+      textAlign(RIGHT);
+    } else {
+      textAlign(LEFT);
+    }
 
-  	text(this.msg, 0, 0);
-  	pop();
+    text(this.msg, 0, 0);
+    pop();
   }
 }
