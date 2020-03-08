@@ -1,5 +1,8 @@
+import SpeechBubble from './speech_bubble.js';
+
+
 class Kevin {
-  constructor(h, kev_head_im) {
+  constructor(h, kev_head_im, font) {
     this.kev_head_im = kev_head_im;
 
     this.h = h;
@@ -15,11 +18,12 @@ class Kevin {
       ' STOP  ALL \nFRIENDLIES',
       createVector(),
       1,
+      font,
     );
   }
 
   im_width() {
-     return this.h * (this.kev_head_im.height / this.kev_head_im.width);
+    return this.h * (this.kev_head_im.height / this.kev_head_im.width);
   }
 
   update() {
@@ -60,3 +64,5 @@ class Kevin {
     pop();
   }
 }
+
+export default Kevin;
