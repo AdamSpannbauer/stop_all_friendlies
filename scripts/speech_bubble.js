@@ -15,6 +15,7 @@ class SpeechBubble {
   	translate(this.mouth_p.x, this.mouth_p.y);
 
   	stroke(0);
+  	strokeWeight(3);
   	fill(this.color);
   	textFont(this.font);
   	textSize(this.size);

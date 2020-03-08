@@ -29,6 +29,7 @@ class GCSetup {
   		noStroke();
   		fill(255, random(150, 250));
   	} else {
+  		noStroke();
   		fill(0);
   	}
   	arc(
