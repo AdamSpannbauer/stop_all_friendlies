@@ -13,14 +13,29 @@ const gc_setups = [];
 
 let kev_talk = false;
 
-function center_canvas() {
+function position_canvas() {
+	let w = canvas_w
+	let h = canvas_h
+
+	if (windowWidth < w * 1.1) {
+		w = windowWidth * 0.9
+		h = w * (canvas_w / canvas_h)
+	}
+
+	if (windowHeight < h * 1.1) {
+		h = windowHeight * 0.9
+		w = h * (canvas_h / canvas_w)
+	}
+
+	resizeCanvas(w, h);
+
   const x = (windowWidth - width) / 2;
   const y = (windowHeight - height) / 2;
   cnv.position(x, y);
 }
 
 function windowResized() {
-  center_canvas();
+  position_canvas();
 }
 
 function preload() {
@@ -31,41 +46,44 @@ function preload() {
 
 function setup() {
   cnv = createCanvas(canvas_w, canvas_h);
-  center_canvas();
+  position_canvas();
+
   imageMode(CENTER);
   angleMode(DEGREES);
 
   // TODO: make a function/class/somethin to make generating setup rows better
-  let x = 70;
-  for (let y = 100; y < height - 100; y += 70) {
+  // FIXME: this is pretty bad
+  let x = width * 0.14;
+  let h = height / 6
+  for (let y = h; y < height - h; y += h * 0.7) {
   	const gc_p = createVector(x, y);
-  	const gc_setup = new GCSetup(gc_p, -1, 100, true, gc_setup_im);
+  	const gc_setup = new GCSetup(gc_p, -1, h, true, gc_setup_im);
   	gc_setups.push(gc_setup);
   }
 
-  x = 180;
-  for (let y = 100; y < height - 100; y += 70) {
+  x = width * 0.35;
+  for (let y = h; y < height - h; y += h * 0.7) {
   	const gc_p = createVector(x, y);
-  	const gc_setup = new GCSetup(gc_p, 1, 100, true, gc_setup_im);
+  	const gc_setup = new GCSetup(gc_p, 1, h, true, gc_setup_im);
   	gc_setups.push(gc_setup);
   }
 
 
-  x = 350;
-  for (let y = 100; y < height - 100; y += 70) {
+  x = width * 0.69;
+  for (let y = h; y < height - h; y += h * 0.7) {
   	const gc_p = createVector(x, y);
-  	const gc_setup = new GCSetup(gc_p, -1, 100, true, gc_setup_im);
+  	const gc_setup = new GCSetup(gc_p, -1, h, true, gc_setup_im);
   	gc_setups.push(gc_setup);
   }
 
-  x = 460;
-  for (let y = 100; y < height - 100; y += 70) {
+  x = width * 0.9;
+  for (let y = h; y < height - h; y += h * 0.7) {
   	const gc_p = createVector(x, y);
-  	const gc_setup = new GCSetup(gc_p, 1, 100, true, gc_setup_im);
+  	const gc_setup = new GCSetup(gc_p, 1, h, true, gc_setup_im);
   	gc_setups.push(gc_setup);
   }
 
-  kevin = new Kevin(100, kev_head_im);
+  kevin = new Kevin(height / 10, kev_head_im);
 }
 
 function draw() {

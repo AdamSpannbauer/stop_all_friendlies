@@ -6,7 +6,7 @@ class SpeechBubble {
     this.dir = dir;
 
     this.font = font || font_8_bit;
-    this.size = size || 10;
+    this.size = size || height * 0.02;
     this.color = col || 150;
   }
 
