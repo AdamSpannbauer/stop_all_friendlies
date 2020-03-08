@@ -46,3 +46,5 @@ class GCSetup {
     pop();
   }
 }
+
+export default GCSetup;

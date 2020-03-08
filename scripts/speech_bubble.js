@@ -5,7 +5,7 @@ class SpeechBubble {
     this.mouth_p = mouth_p;
     this.dir = dir;
 
-    this.font = font || font_8_bit;
+    this.font = font;
     this.size = size || height * 0.02;
     this.color = col || 150;
   }
@@ -17,7 +17,9 @@ class SpeechBubble {
     stroke(0);
     strokeWeight(3);
     fill(this.color);
-    textFont(this.font);
+    if (this.font) {
+      textFont(this.font);
+    }
     textSize(this.size);
 
     if (this.dir < 0) {
@@ -30,3 +32,5 @@ class SpeechBubble {
     pop();
   }
 }
+
+export default SpeechBubble;
