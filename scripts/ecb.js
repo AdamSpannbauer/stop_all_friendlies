@@ -1,14 +1,10 @@
-const { Engine } = Matter;
-const { Bodies } = Matter;
-const { Constraint } = Matter;
-
 class HitBox {
   constructor(p, w, h, world, engine, options) {
     this.p = p;
     this.w = w;
     this.h = h;
 
-    this.body = Bodies.rectangle(this.p.x, this.p.y, w, h, options);
+    this.body = Matter.Bodies.rectangle(this.p.x, this.p.y, w, h, options);
     world.add(engine.world, this.body);
   }
 

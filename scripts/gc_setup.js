@@ -1,4 +1,4 @@
-import HitBox from './hitbox.js';
+import HitBox from './ecb.js';
 
 
 class GCSetup {

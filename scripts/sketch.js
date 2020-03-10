@@ -1,6 +1,6 @@
 import Kevin from './kevin.js';
 import GCSetup from './gc_setup.js';
-import HitBox from './hitbox.js';
+import HitBox from './ecb.js';
 
 const canvas_w = 512;
 const canvas_h = 512;

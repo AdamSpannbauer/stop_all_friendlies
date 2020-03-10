@@ -1,5 +1,5 @@
 import SpeechBubble from './speech_bubble.js';
-import HitBox from './hitbox.js';
+import HitBox from './ecb.js';
 
 
 class Kevin {
