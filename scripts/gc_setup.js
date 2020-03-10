@@ -1,5 +1,8 @@
+import HitBox from './hitbox.js';
+
+
 class GCSetup {
-  constructor(p, dir, h, on, gc_setup_im) {
+  constructor(p, dir, h, on, gc_setup_im, world, engine) {
     this.p = p;
     this.dir = dir;
 
@@ -8,6 +11,12 @@ class GCSetup {
     this.gc_setup_im = gc_setup_im;
     this.h = h;
     this.w = this.im_width();
+
+    const hbox_p = createVector(
+      this.p.x - this.dir * this.w * 0.2,
+      this.p.y + this.h * 0.1,
+    );
+    this.hbox = new HitBox(hbox_p, this.w * 0.4, this.h * 0.8, world, engine, { isStatic: true });
   }
 
   im_width() {
