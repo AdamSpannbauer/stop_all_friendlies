@@ -55,11 +55,12 @@ function setup() {
 
   imageMode(CENTER);
   angleMode(DEGREES);
+  rectMode(CENTER);
 
   // TODO: make a function/class/somethin to make generating setup rows better
   // FIXME: this is pretty bad
   let x = width * 0.14;
-  const h = height / 6;
+  const h = height / 8;
   for (let y = h; y < height - h; y += h * 0.7) {
     const gc_p = createVector(x, y);
     const gc_setup = new GCSetup(gc_p, -1, h, true, gc_setup_im);
@@ -113,7 +114,7 @@ function draw() {
   stroke(100, 100);
   strokeWeight(5);
   noFill();
-  rect(0, 0, width, height);
+  rect(width / 2, height / 2, width, height);
 }
 
 

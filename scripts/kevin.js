@@ -14,6 +14,11 @@ class Kevin {
     this.y_off = random(100);
     this.update();
 
+    this.hbox = {
+      w: this.w * 0.8,
+      h: this.h * 0.8,
+    };
+
     this.speech_bubble = new SpeechBubble(
       ' STOP  ALL \nFRIENDLIES',
       createVector(),
@@ -23,7 +28,7 @@ class Kevin {
   }
 
   im_width() {
-    return this.h * (this.kev_head_im.height / this.kev_head_im.width);
+    return this.h * (this.kev_head_im.width / this.kev_head_im.height);
   }
 
   update() {
@@ -59,8 +64,10 @@ class Kevin {
   draw() {
     push();
     translate(this.p.x, this.p.y);
+    fill(255, 0, 0);
+    // rect(0, 0, this.hbox.w, this.hbox.h);
     scale(this.dir(), 1.0);
-    image(this.kev_head_im, 0, 0, this.h, this.w);
+    image(this.kev_head_im, 0, 0, this.w, this.h);
     pop();
   }
 }
