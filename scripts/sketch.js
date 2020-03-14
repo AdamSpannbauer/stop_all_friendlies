@@ -68,12 +68,12 @@ function setup() {
   angleMode(DEGREES);
   rectMode(CENTER);
 
-  const xs = [width * 0.18, width * 0.42, width * 0.65, width * 0.86]
-  const dirs = [-1, 1, -1, 1]
+  const xs = [width * 0.18, width * 0.42, width * 0.65, width * 0.86];
+  const dirs = [-1, 1, -1, 1];
   const h = height / 8;
   for (let i = 0; i < xs.length; i++) {
-    const row = gc_setup_row(xs[i], h, dirs[i], true, gc_setup_im, World, engine)
-    gc_setups.push(...row)
+    const row = gc_setup_row(xs[i], h, dirs[i], true, gc_setup_im, World, engine);
+    gc_setups.push(...row);
   }
 
   kevin = new Kevin(height / 11, kev_head_im, font_8_bit, World, engine);

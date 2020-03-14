@@ -47,14 +47,14 @@ class Kevin {
 
     if (dx < this.min_force) {
       dx = this.min_force;
-      this.dir = -1
+      this.dir = -1;
     } else if (dx > this.max_force) {
       dx = this.max_force;
-      this.dir = 1
+      this.dir = 1;
     } else if (dx < 0) {
-      this.dir = -1
+      this.dir = -1;
     } else if (dx > 0) {
-      this.dir = 1
+      this.dir = 1;
     }
 
     if (dy < this.min_force) {
