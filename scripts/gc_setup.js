@@ -30,6 +30,8 @@ class GCSetup {
   }
 
   draw() {
+    // this.hbox.draw();
+    
     push();
     translate(this.p.x, this.p.y);
     scale(this.dir, 1.0);

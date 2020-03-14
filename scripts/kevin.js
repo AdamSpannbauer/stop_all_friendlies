@@ -14,7 +14,7 @@ class Kevin {
     this.min_force = -0.001;
     this.max_force = 0.001;
 
-    this.hbox = new HitBox(this.p, this.w * 0.8, this.h * 0.8, world, engine);
+    this.hbox = new HitBox(this.p, this.w * 0.5, this.h * 0.5, world, engine);
 
     this.speech_bubble = new SpeechBubble(
       ' STOP  ALL \nFRIENDLIES',
@@ -117,6 +117,8 @@ class Kevin {
     scale(this.dir, 1.0);
     image(this.kev_head_im, 0, 0, this.w, this.h);
     pop();
+
+    // this.hbox.draw();
   }
 }
 

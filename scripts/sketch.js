@@ -76,7 +76,7 @@ function setup() {
     gc_setups.push(...row);
   }
 
-  kevin = new Kevin(height / 11, kev_head_im, font_8_bit, World, engine);
+  kevin = new Kevin(height / 7, kev_head_im, font_8_bit, World, engine);
 
   top_wall = new HitBox(createVector(width / 2, -30), width, 70, World, engine, { isStatic: true });
   bottom_wall = new HitBox(createVector(width / 2, height + 30), width, 70, World, engine, { isStatic: true });
