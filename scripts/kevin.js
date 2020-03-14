@@ -11,10 +11,10 @@ class Kevin {
     this.w = this.im_width();
 
     this.p = createVector(width / 2, height / 2);
-    this.x_off = random(100);
-    this.y_off = random(100);
+    this.min_force = -0.001;
+    this.max_force = 0.001;
 
-    this.hbox = new HitBox(this.p, this.w * 0.8, this.h * 0.8, world, engine, { friction: 0.99 });
+    this.hbox = new HitBox(this.p, this.w * 0.8, this.h * 0.8, world, engine);
 
     this.speech_bubble = new SpeechBubble(
       ' STOP  ALL \nFRIENDLIES',
@@ -23,6 +23,7 @@ class Kevin {
       font,
     );
 
+    this.use_mouse = true;
     this.update();
   }
 
@@ -30,40 +31,71 @@ class Kevin {
     return this.h * (this.kev_head_im.width / this.kev_head_im.height);
   }
 
-  update() {
-    // For auto moving
-    // const prev_x = this.p.x
+  mouse_move() {
+    let dx = mouseX - this.hbox.body.position.x;
+    let dy = mouseY - this.hbox.body.position.y;
 
-    // this.p.set(
-    //   noise(this.x_off) * width,
-    //   noise(this.y_off) * height,
-    // );
+    if (abs(dx) < 5) {
+      Matter.Body.setVelocity(this.hbox.body, { x: 0, y: this.hbox.body.velocity.y });
+      dx = 0;
+    }
 
-    // if (this.p.x > prev_x) {
-    //   this.dir = 1
-    // } else if (this.p.x < prev_x) {
-    //   this.dir = -1
-    // }
+    if (abs(dy) < 5) {
+      Matter.Body.setVelocity(this.hbox.body, { x: this.hbox.body.velocity.x, y: 0 });
+      dy = 0;
+    }
 
-    // this.x_off += 0.005;
-    // this.y_off += 0.005;
+    if (dx < this.min_force) {
+      dx = this.min_force;
+      this.dir = -1
+    } else if (dx > this.max_force) {
+      dx = this.max_force;
+      this.dir = 1
+    } else if (dx < 0) {
+      this.dir = -1
+    } else if (dx > 0) {
+      this.dir = 1
+    }
 
+    if (dy < this.min_force) {
+      dy = this.min_force;
+    } else if (dy > this.max_force) {
+      dy = this.max_force;
+    }
+
+
+    Matter.Body.applyForce(this.hbox.body, this.hbox.body.position, { x: dx, y: dy });
+  }
+
+  arrow_move() {
     if (keyIsDown(LEFT_ARROW)) {
-      Matter.Body.applyForce(this.hbox.body, this.hbox.body.position, { x: -0.001, y: 0 });
+      Matter.Body.applyForce(this.hbox.body, this.hbox.body.position, { x: this.min_force, y: 0 });
       this.dir = -1;
     }
 
     if (keyIsDown(RIGHT_ARROW)) {
-      Matter.Body.applyForce(this.hbox.body, this.hbox.body.position, { x: 0.001, y: 0 });
+      Matter.Body.applyForce(this.hbox.body, this.hbox.body.position, { x: this.max_force, y: 0 });
       this.dir = 1;
     }
 
     if (keyIsDown(UP_ARROW)) {
-      Matter.Body.applyForce(this.hbox.body, this.hbox.body.position, { x: 0, y: -0.001 });
+      Matter.Body.applyForce(this.hbox.body, this.hbox.body.position, { x: 0, y: this.min_force });
     }
 
     if (keyIsDown(DOWN_ARROW)) {
-      Matter.Body.applyForce(this.hbox.body, this.hbox.body.position, { x: 0, y: 0.001 });
+      Matter.Body.applyForce(this.hbox.body, this.hbox.body.position, { x: 0, y: this.max_force });
+    }
+  }
+
+  update() {
+    if (keyIsDown(ESCAPE)) {
+      this.use_mouse = !this.use_mouse;
+    }
+
+    if (this.use_mouse) {
+      this.mouse_move();
+    } else {
+      this.arrow_move();
     }
   }
 
