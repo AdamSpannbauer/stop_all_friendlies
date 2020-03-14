@@ -1,6 +1,6 @@
 import Kevin from './kevin.js';
-import GCSetup from './gc_setup.js';
 import HitBox from './ecb.js';
+import gc_setup_row from './gc_setup_row.js';
 
 const canvas_w = 512;
 const canvas_h = 512;
@@ -68,36 +68,12 @@ function setup() {
   angleMode(DEGREES);
   rectMode(CENTER);
 
-  // TODO: make a function/class/somethin to make generating setup rows better
-  // FIXME: this is pretty bad
-  let x = width * 0.18;
+  const xs = [width * 0.18, width * 0.42, width * 0.65, width * 0.86]
+  const dirs = [-1, 1, -1, 1]
   const h = height / 8;
-  for (let y = h * 1.3; y < height - h * 1.3; y += h * 0.7) {
-    const gc_p = createVector(x, y);
-    const gc_setup = new GCSetup(gc_p, -1, h, true, gc_setup_im, World, engine);
-    gc_setups.push(gc_setup);
-  }
-
-  x = width * 0.42;
-  for (let y = h * 1.3; y < height - h * 1.3; y += h * 0.7) {
-    const gc_p = createVector(x, y);
-    const gc_setup = new GCSetup(gc_p, 1, h, true, gc_setup_im, World, engine);
-    gc_setups.push(gc_setup);
-  }
-
-
-  x = width * 0.65;
-  for (let y = h * 1.3; y < height - h * 1.3; y += h * 0.7) {
-    const gc_p = createVector(x, y);
-    const gc_setup = new GCSetup(gc_p, -1, h, true, gc_setup_im, World, engine);
-    gc_setups.push(gc_setup);
-  }
-
-  x = width * 0.86;
-  for (let y = h * 1.3; y < height - h * 1.3; y += h * 0.7) {
-    const gc_p = createVector(x, y);
-    const gc_setup = new GCSetup(gc_p, 1, h, true, gc_setup_im, World, engine);
-    gc_setups.push(gc_setup);
+  for (let i = 0; i < xs.length; i++) {
+    const row = gc_setup_row(xs[i], h, dirs[i], true, gc_setup_im, World, engine)
+    gc_setups.push(...row)
   }
 
   kevin = new Kevin(height / 11, kev_head_im, font_8_bit, World, engine);
