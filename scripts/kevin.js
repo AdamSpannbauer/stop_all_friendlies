@@ -24,6 +24,7 @@ class Kevin {
     );
 
     this.use_mouse = true;
+    this.mouse_moved = false;
     this.update();
   }
 
@@ -32,6 +33,13 @@ class Kevin {
   }
 
   mouse_move() {
+    // When app starts mouseX/Y are zero
+    // This is to avoid movement until mouse/touch is on screen
+    if (mouseX === 0 & mouseY === 0 & !this.mouse_moved) {
+      return
+    }
+    this.mouse_moved = true
+
     let dx = mouseX - this.hbox.body.position.x;
     let dy = mouseY - this.hbox.body.position.y;
 
